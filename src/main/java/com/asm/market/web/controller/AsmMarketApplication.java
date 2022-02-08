@@ -1,4 +1,4 @@
-package com.asm.market;
+package com.asm.market.web.controller;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
