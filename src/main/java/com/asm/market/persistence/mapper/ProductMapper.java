@@ -1,6 +1,5 @@
 package com.asm.market.persistence.mapper;
 
-import com.asm.market.domain.CategoryDomain;
 import com.asm.market.domain.ProductDomain;
 import com.asm.market.persistence.entity.Product;
 import org.mapstruct.InheritInverseConfiguration;

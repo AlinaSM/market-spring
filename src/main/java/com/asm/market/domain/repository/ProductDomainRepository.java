@@ -5,7 +5,7 @@ import com.asm.market.domain.ProductDomain;
 import java.util.List;
 import java.util.Optional;
 
-public interface ProductRepository {
+public interface ProductDomainRepository {
     //En esta interfaz solamente se va a indicar el nombre de los metodos que queremos
     //que cualquier repositorio que vaya a trabajar con productos tenga que implementar
 
@@ -13,6 +13,6 @@ public interface ProductRepository {
     Optional<List<ProductDomain>> getByCategory(int categoryId);
     Optional<List<ProductDomain>> getScarseProducts(int quantity);
     Optional<ProductDomain> getProduct(int productId);
-    ProductDomain save(ProductDomain product);
+    ProductDomain save(ProductDomain productDomain);
     void delete(int productId);
 }

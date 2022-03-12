@@ -1,39 +1,51 @@
 package com.asm.market.persistence;
 
+import com.asm.market.domain.ProductDomain;
+import com.asm.market.domain.repository.ProductDomainRepository;
 import com.asm.market.persistence.crud.ProductCrudRepository;
 import com.asm.market.persistence.entity.Product;
+import com.asm.market.persistence.mapper.ProductMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class ProductRepository {
+public class ProductRepository implements ProductDomainRepository {
     private ProductCrudRepository productCrudRepository;
+    private ProductMapper mapper;
 
-    public List<Product> getAll(){
-        return (List<Product>) productCrudRepository.findAll();
+    public List<ProductDomain> getAll(){
+        List<Product> products = (List<Product>) productCrudRepository.findAll();
+        return mapper.toProductsDomain(products);
     }
 
-    public List<Product> getByCategory(int idCategory){
-        return productCrudRepository.findByIdCategoryOrderByNameAsc(idCategory);
+    @Override
+    public Optional<List<ProductDomain>> getByCategory(int categoryId) {
+        List<Product> products =  productCrudRepository.findByIdCategoryOrderByNameAsc(categoryId);
+        return Optional.of(mapper.toProductsDomain(products));
     }
 
-    public Optional<List<Product>> getScarce(int amount){
-        return productCrudRepository.findByAmountInStockLessThanAndStatus(amount, true);
+    @Override
+    public Optional<List<ProductDomain>> getScarseProducts(int quantity) {
+        Optional<List<Product>> products = productCrudRepository.findByAmountInStockLessThanAndStatus(quantity, true);
+        return products.map(prods -> mapper.toProductsDomain(prods));
     }
 
-    public Optional<Product> getProduct(int idProduct){
-        return productCrudRepository.findById(idProduct);
+    @Override
+    public Optional<ProductDomain> getProduct(int productId) {
+        return productCrudRepository.findById(productId).map( product -> mapper.toProductDomain(product) );
     }
 
-    public Product save(Product product){
-        return productCrudRepository.save(product);
+    @Override
+    public ProductDomain save(ProductDomain productDomain){
+        Product product = mapper.toProduct(productDomain);
+        return mapper.toProductDomain(productCrudRepository.save(product));
     }
 
-    public void delete(int idProduct){
-        productCrudRepository.deleteById(idProduct);
+    @Override
+    public void delete(int productId){
+        productCrudRepository.deleteById(productId);
     }
 
-    
 }
