@@ -9,7 +9,7 @@ public class ProductDomain {
     private double price;
     private int stock;
     private boolean active;
-    private CategoryDomain category;
+    private CategoryDomain categoryDomain;
 
     public int getProductId() {
         return productId;
@@ -59,11 +59,11 @@ public class ProductDomain {
         this.active = active;
     }
 
-    public CategoryDomain getCategory() {
-        return category;
+    public CategoryDomain getCategoryDomain() {
+        return categoryDomain;
     }
 
-    public void setCategory(CategoryDomain category) {
-        this.category = category;
+    public void setCategoryDomain(CategoryDomain category) {
+        this.categoryDomain = category;
     }
 }
