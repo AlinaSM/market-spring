@@ -1,6 +1,6 @@
 package com.asm.market.domain;
 
-public class Category {
+public class CategoryDomain {
     private int categoryId;
     private String category;
     private boolean active;

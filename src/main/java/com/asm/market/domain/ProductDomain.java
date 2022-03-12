@@ -1,7 +1,7 @@
 package com.asm.market.domain;
 
 
-public class Product {
+public class ProductDomain {
 
     private int productId;
     private String name;
@@ -9,7 +9,7 @@ public class Product {
     private double price;
     private int stock;
     private boolean active;
-    private Category category;
+    private CategoryDomain category;
 
     public int getProductId() {
         return productId;
@@ -59,11 +59,11 @@ public class Product {
         this.active = active;
     }
 
-    public Category getCategory() {
+    public CategoryDomain getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(CategoryDomain category) {
         this.category = category;
     }
 }
