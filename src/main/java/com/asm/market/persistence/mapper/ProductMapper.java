@@ -21,7 +21,7 @@ public interface ProductMapper {
             @Mapping(source = "salePrice", target = "price"),
             @Mapping(source = "amountInStock", target = "stock"),
             @Mapping(source = "status", target = "active"),
-            @Mapping(source = "categoryDomain", target = "category"),
+            @Mapping(source = "category", target = "categoryDomain"),
     })
     ProductDomain toProductDomain(Product product);
     List<ProductDomain> toProductsDomain(List<Product> products);
