@@ -32,7 +32,7 @@ public class Purchase {
     @JoinColumn(name = "id_cliente", insertable = false, updatable = false)
     private Client client;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "purchase", cascade = {CascadeType.ALL})
     private List<PurchaseProduct> products;
 
     public Integer getId() {
@@ -49,6 +49,22 @@ public class Purchase {
 
     public void setIdClient(String idClient) {
         this.idClient = idClient;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public List<PurchaseProduct> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<PurchaseProduct> products) {
+        this.products = products;
     }
 
     public LocalDateTime getDate() {
